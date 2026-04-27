@@ -1,0 +1,19 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+Type=notify
+NotifyAccess=main
+User=root
+Group=www-data
+WorkingDirectory=/var/lib/jenkins/workspace/django_simple_CICD/app
+ExecStart=/var/lib/jenkins/workspace/Project_CICD/env/bin/gunicorn app.wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
