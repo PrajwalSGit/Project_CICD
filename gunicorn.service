@@ -1,19 +1,23 @@
 [Unit]
-Description=gunicorn daemon
-Requires=gunicorn.socket
+Description=Gunicorn daemon for your application
 After=network.target
 
 [Service]
-Type=notify
-NotifyAccess=main
-User=root
+User=ec2-user
 Group=www-data
+
 WorkingDirectory=/var/lib/jenkins/workspace/django_simple_CICD/app
-ExecStart=/var/lib/jenkins/workspace/Project_CICD/env/bin/gunicorn app.wsgi
-ExecReload=/bin/kill -s HUP $MAINPID
-KillMode=mixed
-TimeoutStopSec=5
-PrivateTmp=true
+
+# Activate virtual environment and run gunicorn
+ExecStart=var/lib/jenkins/workspace/django_simple_CICD/env/bin/gunicorn \
+          --error-logfile /var/lib/jenkins/workspace/django_simple_CICD/error.log \
+          --workers 3 \
+          --capture-output --log-level debug \
+          --bind unix:/run/gunicorn.sock \
+          app.wsgi:application
+
+# Restart automatically if it crashes
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
