@@ -4,8 +4,8 @@ source env/bin/activate
 
 cd /var/lib/jenkins/workspace/django_simple_CICD/app
 
-python3 manage.py makemigrations
-python3 manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 
 echo "Migrations done"
 
