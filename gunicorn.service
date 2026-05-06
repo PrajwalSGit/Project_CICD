@@ -3,8 +3,8 @@ Description=Gunicorn daemon for your application
 After=network.target
 
 [Service]
-User=ec2-user
-Group=www-data
+User=jenkins
+Group=jenkins
 
 WorkingDirectory=/var/lib/jenkins/workspace/django_simple_CICD
 
