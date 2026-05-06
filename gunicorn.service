@@ -6,10 +6,10 @@ After=network.target
 User=ec2-user
 Group=www-data
 
-WorkingDirectory=/var/lib/jenkins/workspace/django_simple_CICD/app
+WorkingDirectory=/var/lib/jenkins/workspace/django_simple_CICD
 
 # Activate virtual environment and run gunicorn
-ExecStart=var/lib/jenkins/workspace/django_simple_CICD/env/bin/gunicorn \
+ExecStart=/var/lib/jenkins/workspace/django_simple_CICD/env/bin/gunicorn \
           --error-logfile /var/lib/jenkins/workspace/django_simple_CICD/error.log \
           --workers 3 \
           --capture-output --log-level debug \
