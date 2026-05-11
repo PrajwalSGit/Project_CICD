@@ -1,8 +1,10 @@
 #!/bin/bash
 
 
-sudo cp -rf app.conf /etc/nginx/conf.d
+sudo cp -rf app.conf /etc/nginx/sites-enabled/app
 chmod 710 /var/lib/jenkins/workspace/django_simple_CICD
+
+sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
 
 sudo nginx -t
 
