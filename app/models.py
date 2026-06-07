@@ -10,4 +10,4 @@ class Employee(models.Model):
     update_time = models.DateTimeField(default=datetime.datetime.now())
 
     def __str__(self):
-        return self.name
+        return self.email
